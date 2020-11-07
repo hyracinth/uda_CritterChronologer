@@ -25,8 +25,7 @@ public class UserController {
 
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
-        return this.ConvertCustomerToDto(
-                customerService.saveCustomer(this.ConvertDtoToCustomer(customerDTO), null));
+        return this.ConvertCustomerToDto(customerService.saveCustomer(this.ConvertDtoToCustomer(customerDTO), null));
     }
 
     @GetMapping("/customer")

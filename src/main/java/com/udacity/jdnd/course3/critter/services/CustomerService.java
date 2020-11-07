@@ -18,10 +18,10 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Customer saveCustomer(Customer customer, List<Long> petIds) {
+    public Customer saveCustomer(Customer customerIn, List<Long> petIds) {
         List<Pet> pets = new ArrayList<>();
         // TODO Get list of pets and assign to customer
 
-        return customerRepository.save(customer);
+        return customerRepository.save(customerIn);
     }
 }
