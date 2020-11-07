@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -25,7 +22,8 @@ public class Pet {
 
     private String name;
 
-    private long ownerId;
+    @ManyToOne(targetEntity = Customer.class)
+    private Customer customer;
 
     private LocalDate birthDate;
 

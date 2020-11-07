@@ -4,6 +4,9 @@ import com.udacity.jdnd.course3.critter.models.Customer;
 import com.udacity.jdnd.course3.critter.models.Employee;
 import com.udacity.jdnd.course3.critter.models.Pet;
 import com.udacity.jdnd.course3.critter.repository.CustomerRepository;
+import com.udacity.jdnd.course3.critter.repository.PetRepository;
+import com.udacity.jdnd.course3.critter.user.CustomerDTO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +19,11 @@ public class CustomerService {
     @Autowired
     CustomerRepository customerRepository;
 
+    @Autowired
+    PetRepository petRepository;
+
     public Customer getCustomer(Long customerId) {
-        Optional<Customer> customer = customerRepository.findById(customerId);
-        if(customer.isPresent())
-            return customer.get();
-        else
-            return null;
+        return customerRepository.getOne(customerId);
     }
 
     public List<Customer> getCustomers() {
@@ -30,8 +32,33 @@ public class CustomerService {
 
     public Customer saveCustomer(Customer customerIn, List<Long> petIds) {
         List<Pet> pets = new ArrayList<>();
-        // TODO Get list of pets and assign to customer
-
+        if(petIds != null) {
+            for (Long petId : petIds) {
+                pets.add(petRepository.getOne(petId));
+            }
+            customerIn.setPets(pets);
+        }
         return customerRepository.save(customerIn);
+    }
+
+    public CustomerDTO ConvertCustomerToDto(Customer customerIn) {
+        CustomerDTO customerDTO = new CustomerDTO();
+        BeanUtils.copyProperties(customerIn, customerDTO);
+        return customerDTO;
+    }
+
+    public Customer ConvertDtoToCustomer(CustomerDTO customerDtoIn) {
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(customerDtoIn, customer);
+
+        List<Pet> pets = new ArrayList<>();
+        List<Long> petIds = customerDtoIn.getPetIds();
+        if(petIds != null) {
+            for (Long petId : petIds) {
+                pets.add(petRepository.getOne(petId));
+            }
+        }
+        customer.setPets(pets);
+        return customer;
     }
 }
