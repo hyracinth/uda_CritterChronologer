@@ -30,6 +30,10 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
+    public Customer getCustomerByPetId(Long petId) {
+        return petRepository.getOne(petId).getCustomer();
+    }
+
     public Customer saveCustomer(Customer customerIn, List<Long> petIds) {
         List<Pet> pets = new ArrayList<>();
         if(petIds != null) {
