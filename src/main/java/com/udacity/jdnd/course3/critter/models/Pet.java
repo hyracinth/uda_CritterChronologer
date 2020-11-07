@@ -22,7 +22,7 @@ public class Pet {
 
     private String name;
 
-    @ManyToOne(targetEntity = Customer.class)
+    @ManyToOne(targetEntity = Customer.class, optional = false)
     private Customer customer;
 
     private LocalDate birthDate;

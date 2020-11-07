@@ -20,7 +20,7 @@ public class PetController {
     @PostMapping
     public PetDTO savePet(@RequestBody PetDTO petDTO) {
         return petService.ConvertPetToDto(
-                petService.savePet(petService.ConvertDtoToPet(petDTO)));
+                petService.savePet(petService.ConvertDtoToPet(petDTO), petDTO.getOwnerId()));
     }
 
     @GetMapping("/{petId}")

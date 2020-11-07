@@ -44,6 +44,16 @@ public class CustomerService {
     public CustomerDTO ConvertCustomerToDto(Customer customerIn) {
         CustomerDTO customerDTO = new CustomerDTO();
         BeanUtils.copyProperties(customerIn, customerDTO);
+
+        List<Long> petIds = new ArrayList<>();
+        List<Pet> pets = customerIn.getPets();
+        if(pets != null) {
+            for(Pet currPet : pets) {
+                petIds.add(currPet.getId());
+            }
+        }
+        customerDTO.setPetIds(petIds);
+
         return customerDTO;
     }
 
@@ -59,6 +69,7 @@ public class CustomerService {
             }
         }
         customer.setPets(pets);
+
         return customer;
     }
 }
