@@ -20,10 +20,10 @@ public class Schedule {
     @GeneratedValue
     private long id;
 
-    @OneToMany(targetEntity = Employee.class)
+    @ManyToMany(targetEntity = Employee.class)
     private List<Employee> employees;
 
-    @OneToMany(targetEntity = Pet.class)
+    @ManyToMany(targetEntity = Pet.class)
     private List<Pet> pets;
 
     private LocalDate date;

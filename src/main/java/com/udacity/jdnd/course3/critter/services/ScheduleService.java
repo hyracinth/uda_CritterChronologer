@@ -29,6 +29,14 @@ public class ScheduleService {
         return scheduleRepository.findAll();
     }
 
+    public List<Schedule> getScheduleForPet(Long petId) {
+        return scheduleRepository.getAllByPetsContains(petRepository.getOne(petId));
+    }
+
+    public List<Schedule> getScheduleForEmployee(Long employeeId) {
+        return scheduleRepository.getAllByEmployeesContains(employeeRepository.getOne(employeeId));
+    }
+
     public Schedule createSchedule(Schedule scheduleIn) {
         return scheduleRepository.save(scheduleIn);
     }
