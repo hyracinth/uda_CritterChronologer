@@ -3,6 +3,7 @@ package com.udacity.jdnd.course3.critter.services;
 import com.udacity.jdnd.course3.critter.models.Employee;
 import com.udacity.jdnd.course3.critter.models.Pet;
 import com.udacity.jdnd.course3.critter.models.Schedule;
+import com.udacity.jdnd.course3.critter.repository.CustomerRepository;
 import com.udacity.jdnd.course3.critter.repository.EmployeeRepository;
 import com.udacity.jdnd.course3.critter.repository.PetRepository;
 import com.udacity.jdnd.course3.critter.repository.ScheduleRepository;
@@ -25,6 +26,9 @@ public class ScheduleService {
     @Autowired
     PetRepository petRepository;
 
+    @Autowired
+    CustomerRepository customerRepository;
+
     public List<Schedule> getSchedules() {
         return scheduleRepository.findAll();
     }
@@ -35,6 +39,10 @@ public class ScheduleService {
 
     public List<Schedule> getScheduleForEmployee(Long employeeId) {
         return scheduleRepository.getAllByEmployeesContains(employeeRepository.getOne(employeeId));
+    }
+
+    public List<Schedule> getScheduleForCustomer(Long customerId) {
+        return scheduleRepository.getAllByPetsIn(customerRepository.getOne(customerId).getPets());
     }
 
     public Schedule createSchedule(Schedule scheduleIn) {
