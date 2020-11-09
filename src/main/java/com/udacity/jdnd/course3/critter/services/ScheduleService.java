@@ -11,6 +11,7 @@ import com.udacity.jdnd.course3.critter.schedule.ScheduleDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 /**
  * This service handles all logic related to Schedule
  */
+@Transactional
 @Service
 public class ScheduleService {
     @Autowired
