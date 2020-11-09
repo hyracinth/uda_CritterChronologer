@@ -1,3 +1,4 @@
 CREATE SCHEMA `critter` ; -- Create the critter database
 
-GRANT ALL ON critter.* TO 'sa'@'localhost'; -- Gives all privileges to the new user on critter
+-- Expects user "sa" to exist in DB
+GRANT ALL ON critter.* TO 'sa'@'localhost'; -- Gives all privileges to the user on critter
