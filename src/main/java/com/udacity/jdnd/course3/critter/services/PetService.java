@@ -8,12 +8,14 @@ import com.udacity.jdnd.course3.critter.repository.PetRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * This service handles all logic related to Pet
  */
+@Transactional
 @Service
 public class PetService {
     @Autowired
