@@ -10,6 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * This is a base entity for to handle both customer and employee
+ *  Both Customer and Employee share common fields of id and name
+ */
 @Entity
 @Table
 @Getter
