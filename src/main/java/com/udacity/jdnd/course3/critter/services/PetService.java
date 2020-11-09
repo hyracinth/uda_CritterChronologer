@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * This service handles all logic related to Pet
+ */
 @Service
 public class PetService {
     @Autowired
@@ -40,7 +43,6 @@ public class PetService {
         return petRepository.getAllByCustomerId(customerId);
     }
 
-    // DTO Conversion
     public PetDTO ConvertPetToDto(Pet petIn) {
         PetDTO petDTO = new PetDTO();
         BeanUtils.copyProperties(petIn, petDTO);

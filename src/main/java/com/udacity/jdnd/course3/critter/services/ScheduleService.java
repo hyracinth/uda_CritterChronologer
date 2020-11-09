@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This service handles all logic related to Schedule
+ */
 @Service
 public class ScheduleService {
     @Autowired
@@ -53,17 +56,17 @@ public class ScheduleService {
         ScheduleDTO scheduleDTO = new ScheduleDTO();
         BeanUtils.copyProperties(scheduleIn, scheduleDTO);
 
-        if(scheduleIn.getEmployees() != null) {
+        if (scheduleIn.getEmployees() != null) {
             List<Long> listIds = new ArrayList<>();
-            for(Employee currEmployee : scheduleIn.getEmployees()) {
+            for (Employee currEmployee : scheduleIn.getEmployees()) {
                 listIds.add(currEmployee.getId());
             }
             scheduleDTO.setEmployeeIds(listIds);
         }
 
-        if(scheduleIn.getPets() != null) {
+        if (scheduleIn.getPets() != null) {
             List<Long> listIds = new ArrayList<>();
-            for(Pet currPet : scheduleIn.getPets()) {
+            for (Pet currPet : scheduleIn.getPets()) {
                 listIds.add(currPet.getId());
             }
             scheduleDTO.setPetIds(listIds);
@@ -76,17 +79,17 @@ public class ScheduleService {
         Schedule schedule = new Schedule();
         BeanUtils.copyProperties(scheduleDTOIn, schedule);
 
-        if(scheduleDTOIn.getEmployeeIds() != null) {
+        if (scheduleDTOIn.getEmployeeIds() != null) {
             List<Employee> listEmployees = new ArrayList<>();
-            for(Long currEmployeeId : scheduleDTOIn.getEmployeeIds()) {
+            for (Long currEmployeeId : scheduleDTOIn.getEmployeeIds()) {
                 listEmployees.add(employeeRepository.getOne(currEmployeeId));
             }
             schedule.setEmployees(listEmployees);
         }
 
-        if(scheduleDTOIn.getPetIds() != null) {
+        if (scheduleDTOIn.getPetIds() != null) {
             List<Pet> listPets = new ArrayList<>();
-            for(Long currPetId : scheduleDTOIn.getPetIds()) {
+            for (Long currPetId : scheduleDTOIn.getPetIds()) {
                 listPets.add(petRepository.getOne(currPetId));
             }
             schedule.setPets(listPets);

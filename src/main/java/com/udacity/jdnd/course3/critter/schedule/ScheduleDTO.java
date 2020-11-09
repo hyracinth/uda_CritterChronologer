@@ -15,7 +15,7 @@ public class ScheduleDTO {
     private long id;
     private List<Long> employeeIds;
     private List<Long> petIds;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private Set<EmployeeSkill> activities;
 

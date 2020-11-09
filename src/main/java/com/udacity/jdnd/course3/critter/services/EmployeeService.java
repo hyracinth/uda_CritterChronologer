@@ -1,6 +1,5 @@
 package com.udacity.jdnd.course3.critter.services;
 
-import com.udacity.jdnd.course3.critter.models.Customer;
 import com.udacity.jdnd.course3.critter.models.Employee;
 import com.udacity.jdnd.course3.critter.repository.EmployeeRepository;
 import com.udacity.jdnd.course3.critter.user.EmployeeDTO;
@@ -13,9 +12,11 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
+/**
+ * This service handles all logic related to Employee
+ */
 @Service
 public class EmployeeService {
     @Autowired
@@ -42,8 +43,8 @@ public class EmployeeService {
     public List<Employee> getEmployeesForService(LocalDate date, Set<EmployeeSkill> skills) {
         List<Employee> listEmployee = employeeRepository.getAllByDaysAvailableContains(date.getDayOfWeek());
         List<Employee> results = new ArrayList<>();
-        for(Employee currEmployee : listEmployee) {
-            if(currEmployee.getSkills().containsAll(skills)){
+        for (Employee currEmployee : listEmployee) {
+            if (currEmployee.getSkills().containsAll(skills)) {
                 results.add(currEmployee);
             }
         }

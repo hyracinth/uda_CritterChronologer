@@ -1,7 +1,6 @@
 package com.udacity.jdnd.course3.critter.services;
 
 import com.udacity.jdnd.course3.critter.models.Customer;
-import com.udacity.jdnd.course3.critter.models.Employee;
 import com.udacity.jdnd.course3.critter.models.Pet;
 import com.udacity.jdnd.course3.critter.repository.CustomerRepository;
 import com.udacity.jdnd.course3.critter.repository.PetRepository;
@@ -12,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+/**
+ * This service handles all logic related to Customer
+ */
 @Service
 public class CustomerService {
     @Autowired
@@ -36,7 +37,7 @@ public class CustomerService {
 
     public Customer saveCustomer(Customer customerIn, List<Long> petIds) {
         List<Pet> pets = new ArrayList<>();
-        if(petIds != null) {
+        if (petIds != null) {
             for (Long petId : petIds) {
                 pets.add(petRepository.getOne(petId));
             }
@@ -51,8 +52,8 @@ public class CustomerService {
 
         List<Long> petIds = new ArrayList<>();
         List<Pet> pets = customerIn.getPets();
-        if(pets != null) {
-            for(Pet currPet : pets) {
+        if (pets != null) {
+            for (Pet currPet : pets) {
                 petIds.add(currPet.getId());
             }
         }
@@ -67,7 +68,7 @@ public class CustomerService {
 
         List<Pet> pets = new ArrayList<>();
         List<Long> petIds = customerDtoIn.getPetIds();
-        if(petIds != null) {
+        if (petIds != null) {
             for (Long petId : petIds) {
                 pets.add(petRepository.getOne(petId));
             }

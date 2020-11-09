@@ -26,7 +26,7 @@ public class ScheduleController {
     @GetMapping
     public List<ScheduleDTO> getAllSchedules() {
         List<ScheduleDTO> listDtos = new ArrayList<>();
-        for(Schedule currSchedule : scheduleService.getSchedules()) {
+        for (Schedule currSchedule : scheduleService.getSchedules()) {
             listDtos.add(scheduleService.ConvertScheduleToDto(currSchedule));
         }
         return listDtos;
@@ -35,7 +35,7 @@ public class ScheduleController {
     @GetMapping("/pet/{petId}")
     public List<ScheduleDTO> getScheduleForPet(@PathVariable long petId) {
         List<ScheduleDTO> listDtos = new ArrayList<>();
-        for(Schedule currSchedule : scheduleService.getScheduleForPet(petId)) {
+        for (Schedule currSchedule : scheduleService.getScheduleForPet(petId)) {
             listDtos.add(scheduleService.ConvertScheduleToDto(currSchedule));
         }
         return listDtos;
@@ -44,7 +44,7 @@ public class ScheduleController {
     @GetMapping("/employee/{employeeId}")
     public List<ScheduleDTO> getScheduleForEmployee(@PathVariable long employeeId) {
         List<ScheduleDTO> listDtos = new ArrayList<>();
-        for(Schedule currSchedule : scheduleService.getScheduleForEmployee(employeeId)) {
+        for (Schedule currSchedule : scheduleService.getScheduleForEmployee(employeeId)) {
             listDtos.add(scheduleService.ConvertScheduleToDto(currSchedule));
         }
         return listDtos;
@@ -53,7 +53,7 @@ public class ScheduleController {
     @GetMapping("/customer/{customerId}")
     public List<ScheduleDTO> getScheduleForCustomer(@PathVariable long customerId) {
         List<ScheduleDTO> listDtos = new ArrayList<>();
-        for(Schedule currSchedule : scheduleService.getScheduleForCustomer(customerId)) {
+        for (Schedule currSchedule : scheduleService.getScheduleForCustomer(customerId)) {
             listDtos.add(scheduleService.ConvertScheduleToDto(currSchedule));
         }
         return listDtos;
